@@ -1,0 +1,11 @@
+<h1>Pois#new</h1>
+<p>Find me in app/views/pois/new.html.erb</p>
+
+
+<%= simple_form_for @poi do |f| %>
+  <%= f.input :title %>
+  <%= f.input :caption %>
+  <%= f.association :category %>
+
+  <%= f.button :submit %>
+<% end %>
