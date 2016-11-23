@@ -7,7 +7,9 @@
 <h1><%= @poi.title %></h1>
 <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&sensor=false&maptype=roadmap&markers=color:red|#{@poi.address}" %>
 <p><%= @poi.caption %></p>
+
 <p><%= @poi.category.name %></p>
+<%= link_to "retourner à l'index", pois_path %>
 <h2>
   <%= pluralize @poi.reviews.size, "review" %>
 </h2>
