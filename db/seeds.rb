@@ -30,17 +30,17 @@ end
 
 poi = [
   {
-    title: "Le Wagon"
-    category: "insolite"
-    user: "Murielle"
-    address: "107 Cours Balguerie Stuttenberg"
+    title: "Le Wagon",
+    catergory: "insolite",
+    user: "Murielle",
+    address: "107 Cours Balguerie Stuttenberg",
     caption: "http://static.latribune.fr/full_width/521995/le-wagon-formation-ccib.jpg"
   },
   {
-    title: "Auchan"
-    category: "monument"
-    user: "Kevin.M"
-    address: "57 Rue du Château d'Eau"
+    title: "Auchan",
+    category: "monument",
+    user: "Kevin.M",
+    address: "57 Rue du Château d'Eau",
     caption: "http://images.google.fr/imgres?imgurl=http%3A%2F%2Fwww.justacote.com%2Fphotos_entreprises%2Fauchan-bordeaux-1322256790.jpg&imgrefurl=http%3A%2F%2Fwww.justacote.com%2Fbordeaux-33000%2Fsuperette-et-supermarche%2Fauchan-908143.htm&h=600&w=800&tbnid=oOKPCnP0w9-ewM%3A&vet=1&docid=OTOFKUzrjix_3M&ei=C4I0WI77MsuRgAbVmqmQCA&tbm=isch&iact=rc&uact=3&dur=2448&page=0&start=0&ndsp=15&ved=0ahUKEwjOrOSq87zQAhXLCMAKHVVNCoIQMwgeKAEwAQ&bih=673&biw=1301"
   }
 ]
