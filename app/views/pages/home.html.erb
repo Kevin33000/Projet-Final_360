@@ -1,2 +1,10 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'background.jpg'%>);">
+        <h2>Bordeaux visum</h2>
+         <p>Vivez et partagez une nouvelle expérience de Bordeaux à 360°</p>
+      </div>
+
+<%= link_to "Trouver un point d'intérêt", pois_path %>
+<%= link_to "Faire un commentaire", reviews_path %>
