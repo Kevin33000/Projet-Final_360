@@ -1,7 +1,13 @@
 class ReviewsController < ApplicationController
   def create
-    @poi = Poi.new(find_review)
-    @poi = @poi.save
+    @poi = Poi.find(params[:poi_id])
+    @review = Review.new(review_params)
+    @review.poi = @poi
+    if @review.save
+      redirect_to poi_path(@poi)
+    else
+      render 'pois/show'
+    end
   end
 
   def new

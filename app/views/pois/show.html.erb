@@ -1,5 +1,27 @@
-<h3><%= @poi.title %></h3>
-<p><%= @poi.caption %></p>
-<p><%= @poi.category %></p>
 
-<%= link_to "Voir les points d'intérêt", pois_path %>
+
+
+
+
+
+<h1><%= @poi.title %></h1>
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&sensor=false&maptype=roadmap&markers=color:red|#{@poi.address}" %>
+<p><%= @poi.caption %></p>
+
+<p><%= @poi.category.name %></p>
+<%= link_to "retourner à l'index", pois_path %>
+<h2>
+  <%= pluralize @poi.reviews.size, "review" %>
+</h2>
+
+<div id="reviews">
+  <% if @poi.reviews.blank? %>
+    Be the first to leave a review for <%= @poi.title %>
+  <% else %>
+    <% @poi.reviews.each do |review| %>
+      <%= render 'reviews/show', review: review %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= render 'reviews/form', poi: @poi, review: @review %>
