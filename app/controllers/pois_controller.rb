@@ -15,6 +15,7 @@ class PoisController < ApplicationController
 
   def show
     @poi = Poi.find(params[:id])
+    @review = Review.new
     @poi_coordinates = { lat: @poi.latitude, lng: @poi.longitude }
 
   end
