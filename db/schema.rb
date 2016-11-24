@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20161123093858) do
   end
 
   create_table "pois", force: :cascade do |t|
-    t.integer  "latitude"
-    t.integer  "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.string   "title"
     t.integer  "category_id"
     t.integer  "user_id"

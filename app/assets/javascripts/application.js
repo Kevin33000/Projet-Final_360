@@ -6,4 +6,5 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require rating
 //= require_tree .
