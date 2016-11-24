@@ -2,5 +2,21 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+.banner {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;color:white;
+  text-align: center;
+  font-size: 30px;
+  font-color: #222223;
+  height: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Droid Serif', serif;
+}
 
-
+.map {
+background-size: cover;
+align-items: right;
+}
