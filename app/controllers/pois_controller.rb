@@ -5,7 +5,7 @@ class PoisController < ApplicationController
   def index
     @pois = Poi.all
 
-    # @pois = Poi.where.not(latitude: nil, longitude: nil)
+    @pois = Poi.where.not(latitude: nil, longitude: nil)
 
     @hash = Gmaps4rails.build_markers(@pois) do |poi, marker|
       marker.lat poi.latitude
@@ -17,7 +17,10 @@ class PoisController < ApplicationController
     @poi = Poi.find(params[:id])
     @review = Review.new
     @poi_coordinates = { lat: @poi.latitude, lng: @poi.longitude }
-
+    @hash = Gmaps4rails.build_markers([@poi]) do |poi, marker|
+      marker.lat poi.latitude
+      marker.lng poi.longitude
+    end
   end
 
   def new
