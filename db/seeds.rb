@@ -1,6 +1,7 @@
 puts 'start seed'
 
 puts 'dstroying old resources'
+Review.destroy_all
 Poi.destroy_all
 User.destroy_all
 Category.destroy_all
