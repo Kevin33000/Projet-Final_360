@@ -1,10 +1,53 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div>
 
+  <h1> BORDEAUX VISUM </h1>
+  <h2> Partagez vos moments forts à Bordeaux en 3D </h2>
+
+</div>
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'background.jpg'%>);">
-        <h2>Bordeaux visum</h2>
-         <p>Vivez et partagez une nouvelle expérience de Bordeaux à 360°</p>
       </div>
-
+<div class="poi">
 <%= link_to "Trouver un point d'intérêt", pois_path %>
-<%= link_to "Faire un commentaire", reviews_path %>
+</div>
+
+<div class="Créer un point d'intérêt">
+<%= link_to "Créer une photo", new_poi_path %>
+</div>
+
+<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'tortue-victoire.jpg'%>);">
+  <div class="card-category">Popular</div>
+  <div class="card-description">
+    <h2> </h2>
+    <p> </p>
+  </div>
+  <img class="card-user avatar" src="user.jpg">
+  <a class="card-link" href="#" ></a>
+</div>
+
+<div class="map">
+  <div class="col-sm-8">
+
+  </div>
+  <div class="col-sm-4">
+     <div id="map" style="width: 100%; height: 300px;"></div>
+
+      <% content_for(:after_js) do %>
+        <%= javascript_tag do %>
+          $(document).ready(function() {
+            var handler = Gmaps.build('Google');
+            handler.buildMap({ internal: { id: 'map' } }, function() {
+              markers = handler.addMarkers(<%= raw @hash.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              if (markers.length == 0) {
+                handler.getMap().setZoom(2);
+              } else if (markers.length == 0) {
+                handler.getMap().setZoom(14);
+              }
+            });
+          });
+        <% end %>
+      <% end %>
+
+    </div>
+</div>

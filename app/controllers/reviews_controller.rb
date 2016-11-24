@@ -24,8 +24,6 @@ class ReviewsController < ApplicationController
   def update
   end
 
-
-
   private
 
   def find_review
