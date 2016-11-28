@@ -29,9 +29,12 @@ class PoisController < ApplicationController
 
   def create
     @poi = current_user.pois.new(poi_params)
-    @poi.save
-
-    redirect_to poi_path(@poi)
+    if @poi.save
+      redirect_to poi_path(@poi)
+    else
+      flash[:alert] = "Erreur lors de la création"
+      render :new
+    end
   end
 
   private

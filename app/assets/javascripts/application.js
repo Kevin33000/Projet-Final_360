@@ -7,4 +7,9 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require rating
+
+//= require three.js.js
+//= require doT.min
+//= require uevent
+
 //= require_tree .

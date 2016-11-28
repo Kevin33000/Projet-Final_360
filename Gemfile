@@ -12,7 +12,6 @@ gem 'redis'
 gem 'cloudinary', '1.1.0'
 gem "attachinary", github: "assembler/attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails"
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -27,6 +26,8 @@ gem "gmaps4rails"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
+  gem 'rails-assets-three.js'
+  gem 'rails-assets-uevent'
 end
 
 group :development, :test do
