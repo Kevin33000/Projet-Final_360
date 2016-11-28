@@ -1,10 +1,56 @@
 <h1><%= @poi.title %></h1>
+<<<<<<< HEAD
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
       <div>
         <% @poi.photos.each do |photo| %>
          <%= cl_image_tag photo.path, :size => "777x600", :crop => :fill %>
+=======
+
+
+
+<div class="row">
+  <div class="col-sm-8">
+    <div>
+      <div class="photosphere" id="poi-<%= @poi.photo.id %>"></div>
+      <%= content_for :photosphere_js do %>
+        <script>
+          $(document).ready(function(){
+            var photosphere = new PhotoSphereViewer({
+              panorama: '<%= cl_image_path @poi.photo.path, width: 1000 %>',
+              container: 'poi-<%= @poi.photo.id %>',
+              navbar: [
+                'autorotate', 'zoom',
+                'spacer-1',
+                'caption',
+                'fullscreen'
+              ],
+              'caption': "BLBLA",
+              fisheye: true,
+              move_speed: 2
+            });
+          });
+        </script>
+      <% end %>
+
+    </div>
+
+
+
+    <p><%= @poi.category.name %></p>
+    <%= link_to "LE MUR D'IMAGE", pois_path %>
+    <h2>
+      <%= pluralize @poi.reviews.size, "review" %>
+    </h2>
+
+    <div id="reviews">
+      <% if @poi.reviews.blank? %>
+        Be the first to leave a review for <%= @poi.title %>
+      <% else %>
+        <% @poi.reviews.each do |review| %>
+          <%= render 'reviews/show', review: review %>
+>>>>>>> d5239680372d827a9796bc5b022ed2cdf9c002d5
         <% end %>
       </div>
 
