@@ -1,34 +1,45 @@
 
 <div class="tabs">
-       <a class="tab active" href="#">
-         <h3>Catégories</h3>
-       </a>
-       <a class="tab active" href="#">
-         <h3>Lieux</h3>
-       </a>
-     </div>
+  <a class="tab active" href="#">
+   <h3>Catégories</h3>
+  </a>
+  <a class="tab active" href="#">
+   <h3>Lieux</h3>
+  </a>
+</div>
+
+<ul class="list-inline">
+  <li data-filter="all"> Tous </li>
+  <% Category.all.each do |category| %>
+    <li data-filter="<%= category.id %>"> <%= category.name %> </li>
+  <% end %>
+</ul>
 
 <div class="container">
   <h1>Liste des photos</h1>
   <div class="row">
     <div class="col-sm-8">
       <div class="row">
-        <% @pois.each do |poi| %>
-          <div class="col-xs-12 col-sm-4">
-            <div class="card">
-              <div class="card-content">
-                <% if poi.photo.present? %>
-                  <%= cl_image_tag poi.photo.path %>
-                <% else %>
-                  <%= image_tag 'http://placehold.it/250x250' %>
-                <% end %>
+        <div class="filtr-container">
+          <% @pois.each do |poi| %>
+              <div class="filtr-item" data-category="<%= poi.category.id %>" data-sort="value">
+                <div class="card">
+                  <div class="card-content">
+
+                    <% if poi.photo.present? %>
+                      <%= cl_image_tag poi.photo.path, width: 250, height: 250, crop: :fill %>
+                    <% else %>
+                      <%= image_tag 'http://placehold.it/250x250' %>
+                    <% end %>
+
+                  </div>
+                  <div class="card-footer">
+                    <%= link_to poi.title, poi_path(poi) %>
+                  </div>
+                </div>
               </div>
-              <div class="card-footer">
-                <%= link_to poi.title, poi_path(poi) %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="col-sm-4">
@@ -38,7 +49,7 @@
           <%= javascript_tag do %>
             $(document).ready(function() {
               var handler = Gmaps.build('Google');
-              handler.buildMap({ internal: { id: 'map' } }, function() {
+              handler.buildMap({provider: { styles: [{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}]  }, internal: { id: 'map' } }, function() {
                 markers = handler.addMarkers(<%= raw @hash.to_json %>);
                 handler.bounds.extendWith(markers);
                 handler.fitMapToBounds();
@@ -50,8 +61,15 @@
               });
             });
           <% end %>
+          <%= javascript_tag do %>
+            $(document).ready(function() {
+              var filterizd = $('.filtr-container').filterizr({
+
+              });
+            });
+          <% end %>
         <% end %>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>

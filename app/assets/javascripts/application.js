@@ -12,4 +12,7 @@
 //= require doT.min
 //= require uevent
 
+//= require filterizr
+
 //= require_tree .
+
