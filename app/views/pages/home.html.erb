@@ -1,57 +1,101 @@
 
-<div>
+  <h2> Visum, une autre vision de votre ville </h2>
 
-  <h1> BORDEAUX VISUM </h1>
-  <h2> Partagez vos moments forts à Bordeaux en 3D </h2>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
 
-</div>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'background.jpg'%>);">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <div class="photo1">
+            <%= cl_image_tag("11131-france-Gironde-Pont-de-Pierre-Bordeaux-panorama-sentucq.h_fdkycp", :height=>450, :width=>1420, :crop=>"scale") %>
+          </div>
+            <div class="carousel-caption">
+          ...
+        </div>
       </div>
-<div class="poi">
-<%= link_to "Trouver un point d'intérêt", pois_path %>
-</div>
+      <div class="item">
+      <%= cl_image_tag("bordeaux1_o4p0f2", :height=>450, :width=>1420, :crop=>"scale") %>
 
-<div class="Créer un point d'intérêt">
-<%= link_to "Créer une photo", new_poi_path %>
-</div>
+        <div class="carousel-caption">
+          ...
+        </div>
+      </div>
+       <div class="item">
+      <%= cl_image_tag("restaurantcdv_e58xtl", :height=>450, :width=>1420, :crop=>"scale") %>
+      ...
+    </div>
 
-<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'tortue-victoire.jpg'%>);">
-  <div class="card-category">Popular</div>
-  <div class="card-description">
-    <h2> </h2>
-    <p> </p>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
-  <img class="card-user avatar" src="user.jpg">
-  <a class="card-link" href="#" ></a>
 </div>
 
-<div class="map">
-  <div class="col-sm-8">
+<div class="block">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <div class="card-home", url(<%= cl_image_path("pont-de-pierre_mmshvl.jpg", :height=>250, :width=>250, :crop=>"scale") %>);">
+          <div class="card-description-home">
+                <h3>Les Photos</h3>
+            <%= link_to pois_path do  %>
+              <i class="fa fa-picture-o" aria-hidden="true" style="color: #272822; font-size: 260px ;"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
+        <div class="col-xs-12 col-sm-4">
+            <div class="card-home", url(<%= cl_image_path("pont-de-pierre_mmshvl.jpg", :height=>250, :width=>250, :crop=>"scale") %>);">
+              <div class="card-description-home">
+                    <h3>Ajouter une photo</h3>
+          <%= link_to new_poi_path do  %>
+            <i class="fa fa-camera-retro" aria-hidden="true" style="color: #272822; font-size: 260px ;"></i>
+          <% end %>
+          </div>
+        </div>
+     </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="map" style="padding: 20px;">
+         <div id="map" style="width: 120%; height: 400px;"></div>
+
+          <% content_for(:after_js) do %>
+            <%= javascript_tag do %>
+              $(document).ready(function() {
+                var handler =  Gmaps.build('Google');
+                handler.buildMap({ internal: { id: 'map' } }, function() {
+                  markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                  handler.bounds.extendWith(markers);
+                  handler.fitMapToBounds();
+                  if (markers.length == 0) {
+                    handler.getMap().setZoom(2);
+
+                  } else if (markers.length == 1) {
+
+                    handler.getMap().setZoom(14);
+                  }
+
+                });
+              });
+            <% end %>
+          <% end %>
+       </div>
+    </div>
   </div>
-  <div class="col-sm-4">
-     <div id="map" style="width: 100%; height: 300px;"></div>
 
 
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-                handler.getMap().setZoom(2);
 
-              } else if (markers.length == 1) {
-
-                handler.getMap().setZoom(14);
-              }
-            });
-          });
-        <% end %>
-      <% end %>
-   </div>
-</div>
 

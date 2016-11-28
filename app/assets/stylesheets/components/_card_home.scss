@@ -1,0 +1,32 @@
+.card-home {
+  height: 175px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  color: white;
+  position: relative;
+}
+
+.card-description-home {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+}
+.card-description-home h2 {
+  font-size: 24px;
+  color: white;
+}
+.card-link-home {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: white;
+  opacity: 0;
+}
+.card-link-home:hover{
+  opacity: 0.9;
+}
+

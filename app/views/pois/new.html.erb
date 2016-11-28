@@ -1,12 +1,15 @@
-<h1>Poster une nouvelle photo</h1>
-<p></p>
+<div class="container">
 
-<%= simple_form_for @poi do |f| %>
-  <%= f.input :title %>
-  <%= f.input :caption %>
-  <%= f.input :address %>
-  <%= f.input :photos, as: :attachinary %>
-  <%= f.association :category %>
+    <h1>Poster une nouvelle photo</h1>
+    <p></p>
 
-  <%= f.button :submit %>
-<% end %>
+    <%= simple_form_for @poi do |f| %>
+      <%= f.input :title %>
+      <%= f.input :caption %>
+      <%= f.input :address %>
+      <%= f.input :photos, as: :attachinary %>
+      <%= f.association :category %>
+
+      <%= f.button :submit %>
+    <% end %>
+</div>

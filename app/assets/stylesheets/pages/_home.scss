@@ -9,7 +9,7 @@
   text-align: center;
   font-size: 30px;
   font-color: #222223;
-  height: 900px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,4 +19,132 @@
 .map {
 background-size: cover;
 align-items: right;
+margin-top: 20px;
+
 }
+
+.fa-picture-o {
+    color: #F29918;
+    font-size: 360px;
+    margin-top: 40px;
+    position: absolute;
+}
+.fa-picture-o:hover,
+.fa-picture-o:focus {
+  transform: scale(1.2);
+  box-shadow: 0 0 65px #CCCCCC inset, 0 0 20px #CCCCCC inset, 0 0 15px #CCCCCC;
+}
+
+
+
+
+.fa-camera-retro {
+    color: #F29918;
+    font-size: 360px;
+    margin-top: 40px;
+    position: absolute;
+}
+
+.fa-camera-retro:hover,
+.fa-camera-retro:focus {
+  transform: scale(1.2);
+  box-shadow: 0 0 65px #CCCCCC inset, 0 0 20px #CCCCCC inset, 0 0 15px #CCCCCC;
+}
+
+.carousel-inner {
+     height: 400px;
+
+
+}
+
+.block {
+  background-color: #CCCCCC;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 0px;
+}
+
+.footer {
+
+
+    width: 129%;
+    line-height: 60px;
+    bottom: 0;
+    color: #FFF;
+    height: 120px;
+    text-align: center;
+    background-color: #222222;
+    margin-left: -157px;
+    margin-bottom: -34px;
+
+
+
+}
+
+.container {
+   width: 80%;
+   margin: 0 auto;
+}
+
+.fa-facebook {
+  font-size: 50px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.fa-twitter {
+  font-size: 50px;
+  margin-right: 20px;
+}
+.fa-instagram {
+  font-size: 50px;
+}
+
+h2 {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+.tabs {
+ background: #B5B5B5 ;
+ display: flex;
+ padding: 0px 299px 0px;
+}
+
+.tabs h3 {
+ font-size: 16px;
+ font-weight: bold;
+ margin-top: 0;
+}
+
+.tab {
+ background: #20231D;
+ flex: 0 0 55%;
+ text-align: center;
+ padding: 14px 0;
+
+}
+
+.tab.active {
+ background: white;
+ color: black;
+ flex: 0 0 47%;
+
+}
+
+
+
+
+
+
