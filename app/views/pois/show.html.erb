@@ -1,4 +1,12 @@
 <h1><%= @poi.title %></h1>
+<<<<<<< HEAD
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <div>
+        <% @poi.photos.each do |photo| %>
+         <%= cl_image_tag photo.path, :size => "777x600", :crop => :fill %>
+=======
 
 
 
@@ -42,49 +50,46 @@
       <% else %>
         <% @poi.reviews.each do |review| %>
           <%= render 'reviews/show', review: review %>
+>>>>>>> d5239680372d827a9796bc5b022ed2cdf9c002d5
         <% end %>
-      <% end %>
+      </div>
+
+      <!-- <p><%= @poi.category.name %></p>-->
+
+      <br clear="all"/><br clear="all"/>
+
+      <imput class="button-wall" style="vertical-align:middle"><%= link_to "Mur d'image", pois_path %></imput>
+
+      <h2><%= pluralize @poi.reviews.size, "review" %></h2>
+      <div id="reviews">
+        <% if @poi.reviews.blank? %>
+          Be the first to leave a review for <%= @poi.title %>
+        <% else %>
+          <% @poi.reviews.each do |review| %>
+            <%= render 'reviews/show', review: review %>
+          <% end %>
+        <% end %>
+      </div>   <%= render 'reviews/form', poi: @poi, review: @review %>
     </div>
-
-   <%= render 'reviews/form', poi: @poi, review: @review %>
- </div>
-
-
- <div class="col-sm-4">
-     <div id="map" style="width: 100%; height: 600px;"></div>
-
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-                handler.getMap().setZoom(2);
-              } else if (markers.length == 1) {
-                handler.getMap().setZoom(14);
-              }
-            });
-          });
-        <% end %>
-      <% end %>
+    <div class="col-sm-4">
+        <div id="map" style="width: 100%; height: 600px;"></div>
+        <% content_for(:after_js) do %>
+           <%= javascript_tag do %>
+             $(document).ready(function() {
+               var handler = Gmaps.build('Google');
+               handler.buildMap({ internal: { id: 'map' } }, function() {
+                 markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                 handler.bounds.extendWith(markers);
+                 handler.fitMapToBounds();
+                 if (markers.length == 0) {
+                   handler.getMap().setZoom(2);
+                 } else if (markers.length == 1) {
+                   handler.getMap().setZoom(14);
+                 }
+               });
+             });
+           <% end %>
+         <% end %>
+    </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
