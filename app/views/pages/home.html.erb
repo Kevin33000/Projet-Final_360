@@ -1,28 +1,33 @@
-
 <div>
 
   <h1> BORDEAUX VISUM </h1>
   <h2> Partagez vos moments forts à Bordeaux en 3D </h2>
-
 </div>
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'background.jpg'%>);">
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'lion-bleu-place-stalingrad.jpg'%>);">
       </div>
+
+      <div class="tabs">
+        <a class="tab active" href="#">
+          <h3>Thèmes</h3>
+        </a>
+        <a class="tab" href="#">
+          <h3>Lieux</h3>
+        </a>
+      </div>
+
 <div class="poi">
-<%= link_to "Trouver un point d'intérêt", pois_path %>
+  <%= link_to "Trouver un point d'intérêt", pois_path %>
 </div>
 
 <div class="Créer un point d'intérêt">
-<%= link_to "Créer une photo", new_poi_path %>
+  <%= link_to "Créer une photo", new_poi_path %>
+  <img tag= "diaphragme-appareil-photo.jpg">
 </div>
 
-<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%=asset_path 'tortue-victoire.jpg'%>);">
-  <div class="card-category">Popular</div>
-  <div class="card-description">
-    <h2> </h2>
-    <p> </p>
-  </div>
-  <img class="card-user avatar" src="user.jpg">
+<img class="card-user avatar" src="user.jpg">
   <a class="card-link" href="#" ></a>
+  <img tag= "" >
 </div>
 
 <div class="map">

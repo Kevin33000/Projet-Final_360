@@ -1,57 +1,44 @@
-<h1><%= @poi.title %></h1>
-
-
-<div class="row">
-  <div class="col-sm-8">
-
-    <p><%= @poi.caption %></p>
-
-    <p><%= @poi.category.name %></p>
-    <%= link_to "LE MUR D'IMAGE", pois_path %>
-    <h2>
-      <%= pluralize @poi.reviews.size, "review" %>
-    </h2>
-
-    <div id="reviews">
-      <% if @poi.reviews.blank? %>
-        Be the first to leave a review for <%= @poi.title %>
-      <% else %>
-        <% @poi.reviews.each do |review| %>
-          <%= render 'reviews/show', review: review %>
-        <% end %>
-      <% end %>
-    </div>
-
-   <%= render 'reviews/form', poi: @poi, review: @review %>
- </div>
-
-
- <div class="col-sm-4">
-     <div id="map" style="width: 100%; height: 600px;"></div>
-
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-          $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-                handler.getMap().setZoom(2);
-              } else if (markers.length == 1) {
-                handler.getMap().setZoom(14);
-              }
-            });
-          });
-        <% end %>
-      <% end %>
+<h1><%= @poi.title %></h1><div class="row">
+ <div class="col-sm-8">
+   <div>
+     <% @poi.photos.each do |photo| %>
+       <%= cl_image_tag photo.path %>
+     <% end %>
+   </div>    <p><%= @poi.category.name %></p>
+   <%= link_to "LE MUR D'IMAGE", pois_path %>
+   <h2>
+     <%= pluralize @poi.reviews.size, "review" %>
+   </h2>
+   <div id="reviews">
+     <% if @poi.reviews.blank? %>
+       Be the first to leave a review for <%= @poi.title %>
+     <% else %>
+       <% @poi.reviews.each do |review| %>
+         <%= render 'reviews/show', review: review %>
+       <% end %>
+     <% end %>
+   </div>   <%= render 'reviews/form', poi: @poi, review: @review %>
   </div>
+  <div class="col-sm-4">
+    <div id="map" style="width: 100%; height: 600px;"></div>      <% content_for(:after_js) do %>
+       <%= javascript_tag do %>
+         $(document).ready(function() {
+           var handler = Gmaps.build('Google');
+           handler.buildMap({ internal: { id: 'map' } }, function() {
+             markers = handler.addMarkers(<%= raw @hash.to_json %>);
+             handler.bounds.extendWith(markers);
+             handler.fitMapToBounds();
+             if (markers.length == 0) {
+               handler.getMap().setZoom(2);
+             } else if (markers.length == 1) {
+               handler.getMap().setZoom(14);
+             }
+           });
+         });
+       <% end %>
+     <% end %>
+ </div>
 </div>
-
-
-
-
 
 
 

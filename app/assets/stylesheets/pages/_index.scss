@@ -1,1 +1,25 @@
 @import "home";
+
+.tabs {
+  background: #53443F;
+  display: flex;
+  padding: 50px 50px 10px
+}
+
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.tab {
+  background: #756A66;
+  flex: 0 0 55%;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.tab.active {
+  background: white;
+  color: black;
+}

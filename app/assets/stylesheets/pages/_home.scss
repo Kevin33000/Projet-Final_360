@@ -7,16 +7,40 @@
   background-size: cover;
   background-repeat: no-repeat;color:white;
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   font-color: #222223;
-  height: 900px;
+  height: 400px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: justify;
   font-family: 'Droid Serif', serif;
 }
 
 .map {
 background-size: cover;
 align-items: right;
+}
+
+.tabs {
+  background: #53443F;
+  display: flex;
+  padding: 50px 50px 10px
+}
+
+.tabs h3 {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+.tab {
+  background: #756A66;
+  flex: 0 0 55%;
+  text-align: center;
+  padding: 30px 0;
+}
+
+.tab.active {
+  background: white;
+  color: black;
 }
