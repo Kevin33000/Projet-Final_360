@@ -1,6 +1,6 @@
 
-  <h2> Visum, une autre vision de votre ville </h2>
 
+<h2> Visum, une autre vision de votre ville </h2>
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -12,9 +12,11 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
+
           <div class="photo1">
             <%= cl_image_tag("11131-france-Gironde-Pont-de-Pierre-Bordeaux-panorama-sentucq.h_fdkycp", :height=>450, :width=>1420, :crop=>"scale") %>
           </div>
+
             <div class="carousel-caption">
           ...
         </div>
@@ -61,7 +63,7 @@
             <div class="card-home", url(<%= cl_image_path("pont-de-pierre_mmshvl.jpg", :height=>250, :width=>250, :crop=>"scale") %>);">
               <div class="card-description-home">
                     <h3>Ajouter une photo</h3>
-          <%= link_to new_poi_path do  %>
+                    <%= link_to new_poi_path do  %>
             <i class="fa fa-camera-retro" aria-hidden="true" style="color: #272822; font-size: 260px ;"></i>
           <% end %>
           </div>
@@ -74,23 +76,20 @@
 
           <% content_for(:after_js) do %>
             <%= javascript_tag do %>
-              $(document).ready(function() {
-                var handler =  Gmaps.build('Google');
-                handler.buildMap({ internal: { id: 'map' } }, function() {
-                  markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                  handler.bounds.extendWith(markers);
-                  handler.fitMapToBounds();
-                  if (markers.length == 0) {
-                    handler.getMap().setZoom(2);
-
-                  } else if (markers.length == 1) {
-
-                    handler.getMap().setZoom(14);
-                  }
-
-                });
+            $(document).ready(function() {
+              var handler = Gmaps.build('Google');
+              handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
+                markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                if (markers.length == 0) {
+                  handler.getMap().setZoom(2);
+                } else if (markers.length == 1) {
+                  handler.getMap().setZoom(14);
+                }
               });
-            <% end %>
+            });
+          <% end %>
           <% end %>
        </div>
     </div>
