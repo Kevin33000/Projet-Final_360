@@ -1,7 +1,5 @@
 <h1><%= @poi.title %></h1>
 
-
-
 <div class="row">
   <div class="col-sm-8">
     <div>
@@ -20,7 +18,7 @@
                   'fullscreen'
                 ],
                 'caption': "BLBLA",
-                fisheye: true,
+                fisheye: false,
                 move_speed: 2
               });
             });
@@ -29,10 +27,9 @@
       <% end %>
     </div>
 
-
-
     <p><%= @poi.category.name %></p>
     <%= link_to "LE MUR D'IMAGE", pois_path %>
+
     <h2>
       <%= pluralize @poi.reviews.size, "review" %>
     </h2>
@@ -47,45 +44,35 @@
       <% end %>
     </div>
 
-   <%= render 'reviews/form', poi: @poi, review: @review %>
- </div>
+    <%= render 'reviews/form', poi: @poi, review: @review %>
+  </div>
+  <div class="col-sm-4">
+    <div id="map" style="width: 100%; height: 600px;"></div>
 
-
- <div class="col-sm-4">
-     <div id="map" style="width: 100%; height: 600px;"></div>
-
-      <% content_for(:after_js) do %>
-        <%= javascript_tag do %>
-            $(document).ready(function() {
-              var handler = Gmaps.build('Google');
-              handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
-                markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                handler.bounds.extendWith(markers);
-                handler.fitMapToBounds();
-                if (markers.length == 0) {
-                  handler.getMap().setZoom(2);
-                } else if (markers.length == 1) {
-                  handler.getMap().setZoom(14);
-                }
-              });
-            });
-          <% end %>
+    <% content_for(:after_js) do %>
+      <%= javascript_tag do %>
+        $(document).ready(function() {
+          var handler = Gmaps.build('Google');
+          handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
+            markers = handler.addMarkers(<%= raw @hash.to_json %>);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            if (markers.length == 0) {
+              handler.getMap().setZoom(2);
+            } else if (markers.length == 1) {
+              handler.getMap().setZoom(14);
+            }
+          });
+        });
       <% end %>
+      <%= javascript_tag do %>
+        $(document).ready(function() {
+          var filterizd = $('.filtr-container').filterizr({
+
+          });
+        });
+      <% end %>
+    <% end %>
+  <!-- </div> -->
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
