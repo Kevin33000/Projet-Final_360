@@ -44,7 +44,7 @@ class PoisController < ApplicationController
   end
 
   def poi_params
-     params.require(:poi).permit(:title, :caption, :category_id, :longitude, :latitude, :address, photos: [])
+     params.require(:poi).permit(:title, :caption, :category_id, :longitude, :latitude, :address, :photo)
   end
 
 end

@@ -5,27 +5,28 @@
 <div class="row">
   <div class="col-sm-8">
     <div>
-      <div class="photosphere" id="poi-<%= @poi.photo.id %>"></div>
-      <%= content_for :photosphere_js do %>
-        <script>
-          $(document).ready(function(){
-            var photosphere = new PhotoSphereViewer({
-              panorama: '<%= cl_image_path @poi.photo.path, width: 1000 %>',
-              container: 'poi-<%= @poi.photo.id %>',
-              navbar: [
-                'autorotate', 'zoom',
-                'spacer-1',
-                'caption',
-                'fullscreen'
-              ],
-              'caption': "BLBLA",
-              fisheye: true,
-              move_speed: 2
+      <% if @poi.photo %>
+        <div class="photosphere" id="poi-<%= @poi.photo.id %>"></div>
+        <%= content_for :photosphere_js do %>
+          <script>
+            $(document).ready(function(){
+              var photosphere = new PhotoSphereViewer({
+                panorama: '<%= cl_image_path @poi.photo.path, width: 1000 %>',
+                container: 'poi-<%= @poi.photo.id %>',
+                navbar: [
+                  'autorotate', 'zoom',
+                  'spacer-1',
+                  'caption',
+                  'fullscreen'
+                ],
+                'caption': "BLBLA",
+                fisheye: true,
+                move_speed: 2
+              });
             });
-          });
-        </script>
+          </script>
+        <% end %>
       <% end %>
-
     </div>
 
 
@@ -55,20 +56,20 @@
 
       <% content_for(:after_js) do %>
         <%= javascript_tag do %>
-          $(document).ready(function() {
-            var handler = Gmaps.build('Google');
-            handler.buildMap({ internal: { id: 'map' } }, function() {
-              markers = handler.addMarkers(<%= raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              if (markers.length == 0) {
-                handler.getMap().setZoom(2);
-              } else if (markers.length == 1) {
-                handler.getMap().setZoom(14);
-              }
+            $(document).ready(function() {
+              var handler = Gmaps.build('Google');
+              handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
+                markers = handler.addMarkers(<%= raw @hash.to_json %>);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+                if (markers.length == 0) {
+                  handler.getMap().setZoom(2);
+                } else if (markers.length == 1) {
+                  handler.getMap().setZoom(14);
+                }
+              });
             });
-          });
-        <% end %>
+          <% end %>
       <% end %>
   </div>
 </div>
