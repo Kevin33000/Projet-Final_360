@@ -1,4 +1,14 @@
-<h1><%= @poi.title %></h1>
+<div>
+  <h1><%= @poi.title %></h1>
+  <div class="stars-count">
+    <% @poi.reviews.average(:rating).to_i.times do %>
+      <i class="fa fa-star" aria-hidden="true" style="color: #F29918;"></i>
+    <% end %>
+    <% (5 - @poi.reviews.average(:rating).to_i).times do %>
+      <i class="fa fa-star-o" aria-hidden="true"></i>
+    <% end %>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-8">
