@@ -1,2 +1,25 @@
 @import "home";
 @import "pois";
+
+
+
+.list-inline {
+    padding-left: 138px;
+    list-style: none;
+    margin-left: -11px;
+    color: #464646;
+    margin-top: 7px;
+    font-size: 22px;
+    font-family: 'Nunito', sans-serif;
+    // box-shadow: 5px 5px;
+}
+.list-inline > li {
+    display: inline-block;
+    // padding-left: 14px;
+    padding-right: 5px;
+  }
+
+.list-inline > li:hover {
+  background-color: $brand-primary;
+  cursor: pointer;
+}

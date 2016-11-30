@@ -1,14 +1,21 @@
 <div class="container">
     <h1>Poster une nouvelle photo</h1>
-    <p></p>
 
     <%= simple_form_for @poi do |f| %>
       <%= f.input :title %>
       <%= f.input :caption %>
-      <%= f.input :address %>
+      <%= f.input :latitude, as: :hidden %>
+      <%= f.input :longitude, as: :hidden %>
       <%= f.input :photo, as: :attachinary %>
-      <%= f.association :category %>
 
-      <%= f.button :submit %>
+      <div id="map-exif">
+        <img src="http://consumer.huawei.com/fr/mobile-phones/p9/images/spinner.gif" class="hidden">
+      </div>
+      <%= f.association :category %>
+      <div id="submit_new_poi">
+        <%= f.button :submit %>
+      </div>
     <% end %>
+
+    <img class="hidden" src="" id="photo-exif-gps">
 </div>

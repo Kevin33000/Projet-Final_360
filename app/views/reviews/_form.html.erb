@@ -1,6 +1,6 @@
 
 
-<%= simple_form_for([ poi, review ]) do |form| %>
+<%= simple_form_for([ poi, review ], remote: true) do |form| %>
   <%= form.input :comment, as: :text %>
   <div class="star-rating">
     <input type="radio" name="review[rating]" class="rating" value="1" />

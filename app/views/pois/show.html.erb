@@ -17,7 +17,7 @@
                   'caption',
                   'fullscreen'
                 ],
-                'caption': "BLBLA",
+                'caption': "",
                 fisheye: false,
                 move_speed: 2
               });
@@ -27,10 +27,12 @@
       <% end %>
     </div>
 
-    <p><%= @poi.category.name %></p>
+    <h3><%= @poi.category.name %></h3>
+    <P><%= @poi.caption %></P>
+
     <%= link_to "LE MUR D'IMAGE", pois_path %>
 
-    <h2>
+    <h2 id="review-count">
       <%= pluralize @poi.reviews.size, "review" %>
     </h2>
 
