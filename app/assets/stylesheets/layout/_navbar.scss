@@ -1,10 +1,10 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: #E4E4E4;
+  background: #232821;
   transition: all 0.3s ease;
   display: flex;
-  height: 70px;
+  height: 56px;
   padding: 0px 30px;
   align-items: center;
   justify-content: space-between;
@@ -86,7 +86,7 @@
 .navbar-wagon-search-input {
   flex: 0 1 300px;
   transition: all 0.15s ease;
-  line-height: 40px;
+  line-height: 30px;
   font-weight: lighter;
   color: #666666;
   border: 1px solid #E6E6E6;

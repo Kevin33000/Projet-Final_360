@@ -13,6 +13,6 @@
 //= require uevent
 
 //= require filterizr
+//= require exif-js
 
 //= require_tree .
-

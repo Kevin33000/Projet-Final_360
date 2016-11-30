@@ -1,11 +1,10 @@
 
 <ul class="list-inline">
-  <li data-filter="all"> Tous </li>
+  <li data-filter="all", class="label label-default"> Tous </li>
   <% Category.all.each do |category| %>
-    <li data-filter="<%= category.id %>"> <%= category.name %> </li>
+    <li data-filter="<%= category.id %>", class="label label-default"> <%= category.name %> </li>
   <% end %>
 </ul>
-
 <div class="container">
   <h1>Liste des photos</h1>
   <div class="row">

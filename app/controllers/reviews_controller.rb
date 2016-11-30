@@ -3,10 +3,17 @@ class ReviewsController < ApplicationController
     @poi = Poi.find(params[:poi_id])
     @review = Review.new(review_params)
     @review.poi = @poi
+
     if @review.save
-      redirect_to poi_path(@poi)
+      respond_to do |format|
+        format.html { redirect_to poi_path(@poi) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render 'pois/show'
+      respond_to do |format|
+        format.html { render 'pois/show' }
+        format.js  # <-- idem
+      end
     end
   end
 

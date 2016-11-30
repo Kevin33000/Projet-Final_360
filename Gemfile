@@ -29,6 +29,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-three.js'
   gem 'rails-assets-uevent'
   gem 'rails-assets-giotiskl--Filterizr'
+  gem 'rails-assets-exif-js'
 end
 
 group :development, :test do

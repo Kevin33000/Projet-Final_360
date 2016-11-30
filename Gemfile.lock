@@ -154,6 +154,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0.1)
       sprockets-rails (>= 2.0.0)
+    rails-assets-exif-js (2.1.1)
     rails-assets-giotiskl--Filterizr (1.2.3)
     rails-assets-three.js (0.82.0)
     rails-assets-uevent (1.0.0)
@@ -244,6 +245,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 5.0.0.1)
+  rails-assets-exif-js!
   rails-assets-giotiskl--Filterizr!
   rails-assets-three.js!
   rails-assets-uevent!
