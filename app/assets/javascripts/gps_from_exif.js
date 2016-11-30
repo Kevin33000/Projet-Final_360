@@ -27,7 +27,7 @@ $(document).ready(function(){
         var lat = ConvertDMSToDD(latDMS[0], latDMS[1], latDMS[2], latRef)
         var lng = ConvertDMSToDD(lngDMS[0], lngDMS[1], lngDMS[2], lngRef)
 
-        var latLng = `${lat},${lng}`;
+        var latLng = lat + ',' + lng;
 
         $('#poi_latitude').val(lat);
         $('#poi_longitude').val(lng);
