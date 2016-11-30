@@ -1,16 +1,38 @@
-$footer-height: 120px;
-
-html {
-  position: relative;
-  min-height: 100%;
+.footer {
+  color:white;
+  padding: 20px 40px 0px 40px;
+  background-color: #161713;
+  .footer-logo {
+    width: 80px;
+    vertical-align: middle;
+  }
+  .footer-bottom-content {
+    border-top: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .social-links {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    li a i {
+      font-size: 24px;
+      color: white;
+    }
+    li a i:hover {
+      color:blue;
+    }
+  }
 }
-
-
-
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: $footer-height;
-  width: 100%;
+// sticky footer
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.site-content {
+  flex: 1;
 }
