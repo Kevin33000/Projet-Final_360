@@ -14,9 +14,9 @@
     <div class="container-fluid">
       <div class="filtr-container row">
         <% @pois.each do |poi| %>
-            <div class="filtr-item col-sm-4" data-category="<%= poi.category.id %>" data-sort="value">
-              <%= render "poi", poi: poi %>
-            </div>
+          <div class="filtr-item col-sm-4" data-category="<%= poi.category.id %>" data-sort="value">
+            <%= render "poi", poi: poi %>
+          </div>
         <% end %>
       </div>
     </div>

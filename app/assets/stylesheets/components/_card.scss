@@ -6,6 +6,7 @@ $card-item-gutter: 10px;
   background-size: cover;
   background-position: center center;
   position: relative;
+  margin: 15px 0;
 
   .card-category {
     position: absolute;
@@ -33,6 +34,7 @@ $card-item-gutter: 10px;
 
   &.card-big {
     height: 400px;
+    margin: 0;
 
     .card-cta {
       position: absolute;
