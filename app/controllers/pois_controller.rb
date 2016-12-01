@@ -30,7 +30,7 @@ class PoisController < ApplicationController
   end
 
   def create
-    @poi = current_user.pois.new(poi_params)
+    @poi = Poi.new(poi_params)
     if @poi.save
       redirect_to poi_path(@poi)
     else
