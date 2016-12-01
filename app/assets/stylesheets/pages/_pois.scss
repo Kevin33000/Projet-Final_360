@@ -1,40 +1,25 @@
-.button-wall {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #C0C0C0;
-  border: none;
-  color: #GGGGG;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 210px;
-  height: 70px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+
+body.pois-index {
+  height: 100vh;
+
+  .footer {
+    display: none;
+  }
 }
 
-.button-wall span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button-wall span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button-wall:hover span {
-  padding-right: 25px;
-}
-
-.button-wall:hover span:after {
-  opacity: 1;
-  right: 0;
+.pois {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  .pois-list {
+    flex: 1;
+    overflow-x: scroll;
+    padding: 15px;
+    .card {
+      margin: 15px 0;
+    }
+  }
+  .pois-map {
+    width: 380px;
+  }
 }

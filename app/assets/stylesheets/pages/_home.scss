@@ -28,6 +28,7 @@ margin-top: 20px;
     font-size: 360px;
     margin-top: 40px;
     position: absolute;
+
 }
 .fa-picture-o:hover,
 .fa-picture-o:focus {
@@ -79,22 +80,6 @@ margin-top: 20px;
   font-size: 50px;
 }
 
-h2 {
-  animation-duration: 3s;
-  animation-name: slidein;
-}
-
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
 
 .tabs {
  background: #E4E4E4 ;
@@ -124,7 +109,27 @@ h2 {
 }
 
 
+.last-pois {
+  padding: 30px 0 60px;
+}
 
+.last-pois-title {
+  margin-bottom: 40px;
+}
 
-
-
+.banner-home {
+  display: flex;
+  background: #333832;
+  .banner-home-title {
+    flex-basis: 440px;
+    padding: 0 20px;
+    align-self: center;
+    color: white;
+  }
+  .banner-carousel {
+    flex-grow: 1;
+  }
+  .banner-tagline {
+    color: #9a9a9a;
+  }
+}

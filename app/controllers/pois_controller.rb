@@ -10,6 +10,8 @@ class PoisController < ApplicationController
     @hash = Gmaps4rails.build_markers(@pois) do |poi, marker|
       marker.lat poi.latitude
       marker.lng poi.longitude
+      marker.infowindow render_to_string(partial: "/pois/poi", locals: { poi: poi })
+
     end
   end
 

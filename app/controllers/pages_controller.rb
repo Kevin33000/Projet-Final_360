@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
 
-    @pois = Poi.where.not(latitude: nil, longitude: nil)
+    @pois = Poi.where.not(latitude: nil, longitude: nil).limit(6)
 
     @hash = Gmaps4rails.build_markers(@pois) do |poi, marker|
       marker.lat poi.latitude

@@ -1,0 +1,13 @@
+$margin-search: 10px;
+.search {
+  display: flex;
+  .search-address {
+    flex-grow: 2;
+    margin-right: $margin-search;
+  }
+  select {
+    flex-basis: 250px;
+    margin-right: $margin-search;
+  }
+
+}

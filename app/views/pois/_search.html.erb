@@ -1,0 +1,12 @@
+<div class="subtitle">
+  <div class="container">
+    <%= form_tag pois_path, :method => 'get' do %>
+      <div class="search">
+        <%= text_field_tag :address, '', class: "search-address form-control input-md", placeholder: "Entrez une adresse (ex: Bordeaux)" %>
+        <%= select_tag :category, options_from_collection_for_select(Category.all, "id", "name"), include_blank: "Tout", class: "form-control input-md" %>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-default btn-md" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
