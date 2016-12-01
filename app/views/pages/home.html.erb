@@ -7,15 +7,11 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <%= render "pois/poi_big", poi: Poi.first %>
-      </div>
-      <div class="item">
-        <%= render "pois/poi_big", poi: Poi.second %>
-      </div>
-      <div class="item">
-        <%= render "pois/poi_big", poi: Poi.last %>
-      </div>
+      <% @promoted.each do |poi| %>
+        <div class="item <%= "active" if poi == @promoted.first %>">
+          <%= render "pois/poi_big", poi: poi %>
+        </div>
+      <% end %>
     </div>
 
     <!-- Controls -->

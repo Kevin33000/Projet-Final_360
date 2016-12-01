@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def home
+    @promoted = Poi.first(3)
 
     @pois = Poi.where.not(latitude: nil, longitude: nil).limit(6)
 
