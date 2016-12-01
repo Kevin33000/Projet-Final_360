@@ -2,11 +2,12 @@
     <h1>Poster une nouvelle photo</h1>
 
     <%= simple_form_for @poi do |f| %>
+      <%= f.input :photo, as: :attachinary %>
       <%= f.input :title %>
       <%= f.input :caption %>
       <%= f.input :latitude, as: :hidden %>
       <%= f.input :longitude, as: :hidden %>
-      <%= f.input :photo, as: :attachinary %>
+
 
       <div id="map-exif">
         <img src="http://consumer.huawei.com/fr/mobile-phones/p9/images/spinner.gif" class="hidden">

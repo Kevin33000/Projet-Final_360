@@ -1,65 +1,56 @@
 
-<ul class="list-inline">
-  <li data-filter="all", class="label label-default"> Tous </li>
-  <% Category.all.each do |category| %>
-    <li data-filter="<%= category.id %>", class="label label-default"> <%= category.name %> </li>
-  <% end %>
-</ul>
-<div class="container">
-  <h1>Liste des photos</h1>
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="row">
-        <div class="filtr-container">
-          <% @pois.each do |poi| %>
-              <div class="filtr-item" data-category="<%= poi.category.id %>" data-sort="value">
-                <div class="card">
-                  <div class="card-content">
+<div class="subtitle">
+  <ul class="filters list-inline">
+    <li data-filter="all" class="label label-default"> Tous </li>
+    <% Category.all.each do |category| %>
+      <li data-filter="<%= category.id %>" class="label label-default"> <%= category.name.capitalize %> </li>
+    <% end %>
+  </ul>
+</div>
 
-                    <% if poi.photo.present? %>
-                      <%= cl_image_tag poi.photo.path, width: 250, height: 250, crop: :fill %>
-                    <% else %>
-                      <%= image_tag 'http://placehold.it/250x250' %>
-                    <% end %>
+<div class="pois">
 
-                  </div>
-                  <div class="card-footer">
-                    <%= link_to poi.title, poi_path(poi) %>
-                  </div>
-                </div>
-              </div>
-          <% end %>
-        </div>
+  <div class="pois-list">
+    <div class="container-fluid">
+      <div class="filtr-container row">
+        <% @pois.each do |poi| %>
+            <div class="filtr-item col-sm-4" data-category="<%= poi.category.id %>" data-sort="value">
+              <%= render "poi", poi: poi %>
+            </div>
+        <% end %>
       </div>
     </div>
-    <div class="col-sm-4">
-      <div id="map" style="width: 100%; height: 600px;"></div>
-
-        <% content_for(:after_js) do %>
-          <%= javascript_tag do %>
-            $(document).ready(function() {
-              var handler = Gmaps.build('Google');
-              handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
-                markers = handler.addMarkers(<%= raw @hash.to_json %>);
-                handler.bounds.extendWith(markers);
-                handler.fitMapToBounds();
-                if (markers.length == 0) {
-                  handler.getMap().setZoom(2);
-                } else if (markers.length == 1) {
-                  handler.getMap().setZoom(14);
-                }
-              });
-            });
-          <% end %>
-          <%= javascript_tag do %>
-            $(document).ready(function() {
-              var filterizd = $('.filtr-container').filterizr({
-
-              });
-            });
-          <% end %>
-        <% end %>
-      <!-- </div> -->
-    </div>
   </div>
+
+  <div class="pois-map">
+    <div id="map" style="width: 100%; height: 100%;"></div>
+  </div>
+
 </div>
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      var category = getParameterByName("category")
+      var filter =  category ? category : 'all'
+      var filterizd = $('.filtr-container').filterizr({
+        filter: filter,
+        layout: "sameSize"
+      });
+    });
+  </script>
+<% end %>

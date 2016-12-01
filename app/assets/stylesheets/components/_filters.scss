@@ -1,0 +1,16 @@
+
+.filters {
+  text-align: center;
+  margin: 0;
+  li {
+    display: inline-block;
+    margin: 0 2px;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  li:hover {
+    background-color: $brand-primary;
+    cursor: pointer;
+  }
+
+}

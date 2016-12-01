@@ -1,0 +1,10 @@
+<div class="card" style="background-image: url(<%= cl_image_path poi.photo.path, width: 300, height: 250, crop: :fill %>)">
+  <span class="card-category label label-default">
+    <%= poi.category.name %>
+  </span>
+  <div class="card-title">
+    <%= poi.title %>
+  </div>
+
+  <%= link_to "", poi_path(poi), class: "card-link" %>
+</div>

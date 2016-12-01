@@ -1,90 +1,98 @@
-<div>
-  <h1><%= @poi.title %></h1>
-  <div class="stars-count">
-    <% @poi.reviews.average(:rating).to_i.times do %>
-      <i class="fa fa-star" aria-hidden="true" style="color: #F29918;"></i>
-    <% end %>
-    <% (5 - @poi.reviews.average(:rating).to_i).times do %>
-      <i class="fa fa-star-o" aria-hidden="true"></i>
-    <% end %>
+<div class="subtitle">
+  <div class="poi media">
+    <div class="media-body">
+      <h1 class="poi-title">
+        <%= @poi.title %>
+      </h1>
+      <p class="poi-caption"><%= @poi.caption %></p>
+    </div>
+    <div class="media-right">
+      <div class="poi-meta">
+        <span class="poi-category label label-default">
+          <%= @poi.category.name %>
+        </span>
+
+
+        <div class="stars-count poi-rating">
+          <% @poi.reviews.average(:rating).to_i.times do %>
+            <i class="fa fa-star" aria-hidden="true" style="color: #F29918;"></i>
+          <% end %>
+          <% (5 - @poi.reviews.average(:rating).to_i).times do %>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-8">
-    <div>
-      <% if @poi.photo %>
-        <div class="photosphere" id="poi-<%= @poi.photo.id %>"></div>
-        <%= content_for :photosphere_js do %>
-          <script>
-            $(document).ready(function(){
-              var photosphere = new PhotoSphereViewer({
-                panorama: '<%= cl_image_path @poi.photo.path, width: 1000 %>',
-                container: 'poi-<%= @poi.photo.id %>',
-                navbar: [
-                  'autorotate', 'zoom',
-                  'spacer-1',
-                  'caption',
-                  'fullscreen'
-                ],
-                'caption': "",
-                fisheye: false,
-                move_speed: 2
-              });
-            });
-          </script>
-        <% end %>
-      <% end %>
+<div class="photosphere" id="poi-<%= @poi.photo.id %>"></div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="reviews">
+        <h2 id="review-count">
+          <%= pluralize @poi.reviews.size, "review" %>
+        </h2>
+
+        <div id="reviews">
+          <% if @poi.reviews.blank? %>
+            Be the first to leave a review for <%= @poi.title %>
+          <% else %>
+            <% @poi.reviews.each do |review| %>
+              <%= render 'reviews/show', review: review %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= render 'reviews/form', poi: @poi, review: @review %>
+      </div>
     </div>
 
-    <h3><%= @poi.category.name %></h3>
-    <P><%= @poi.caption %></P>
-
-    <%= link_to "LE MUR D'IMAGE", pois_path %>
-
-    <h2 id="review-count">
-      <%= pluralize @poi.reviews.size, "review" %>
-    </h2>
-
-    <div id="reviews">
-      <% if @poi.reviews.blank? %>
-        Be the first to leave a review for <%= @poi.title %>
-      <% else %>
-        <% @poi.reviews.each do |review| %>
-          <%= render 'reviews/show', review: review %>
-        <% end %>
-      <% end %>
+    <div class="col-sm-5">
+      <div id="map" class="poi-map" style="width: 100%; height: 400px;"></div>
     </div>
-
-    <%= render 'reviews/form', poi: @poi, review: @review %>
-  </div>
-  <div class="col-sm-4">
-    <div id="map" style="width: 100%; height: 600px;"></div>
-
-    <% content_for(:after_js) do %>
-      <%= javascript_tag do %>
-        $(document).ready(function() {
-          var handler = Gmaps.build('Google');
-          handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
-            markers = handler.addMarkers(<%= raw @hash.to_json %>);
-            handler.bounds.extendWith(markers);
-            handler.fitMapToBounds();
-            if (markers.length == 0) {
-              handler.getMap().setZoom(2);
-            } else if (markers.length == 1) {
-              handler.getMap().setZoom(14);
-            }
-          });
-        });
-      <% end %>
-      <%= javascript_tag do %>
-        $(document).ready(function() {
-          var filterizd = $('.filtr-container').filterizr({
-
-          });
-        });
-      <% end %>
-    <% end %>
-  <!-- </div> -->
   </div>
 </div>
+
+<%= content_for :photosphere_js do %>
+  <script>
+    $(document).ready(function(){
+      var photosphere = new PhotoSphereViewer({
+        panorama: '<%= cl_image_path @poi.photo.path, width: 1000 %>',
+        container: 'poi-<%= @poi.photo.id %>',
+        mousewheel: false,
+        navbar: [
+          'autorotate', 'zoom',
+          'spacer-1',
+          'caption',
+          'fullscreen'
+        ],
+        'caption': "",
+        fisheye: true,
+        move_speed: 2
+      });
+    });
+  </script>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({provider: { styles: [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}]  }, internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+        handler.getMap().setOptions({ scrollwheel: false });
+      });
+    });
+  </script>
+<% end %>
