@@ -1,7 +1,3 @@
-Review.destroy_all
-Poi.destroy_all
-Category.destroy_all
-
 print "Creating categories"
 
 categories = [
